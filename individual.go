@@ -7,7 +7,6 @@ import (
 )
 
 type Individual struct {
-	Size      int64
 	genes     []int64
 	fitness   int64
 	generator *rand.Rand
@@ -16,7 +15,6 @@ type Individual struct {
 //Create a new Individual
 func (i *Individual) New(size int64) *Individual {
 	return &Individual{
-		Size:    size,
 		genes:   make([]int64, size),
 		fitness: 0,
 	}
@@ -62,7 +60,7 @@ func (i *Individual) generateGenes() *Individual {
 //Mutates a gene by flipping it
 func (i *Individual) mutate() *Individual {
 	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
-	idx := generator.Int63n(i.Size)
+	idx := generator.Int63n(int64(len(i.genes)))
 	i.setGene(idx, 1-i.getGene(idx))
 
 	return i
