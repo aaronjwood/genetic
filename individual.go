@@ -13,7 +13,7 @@ type Individual struct {
 }
 
 //Create a new Individual
-func (i *Individual) New(size int64) *Individual {
+func New(size int64) *Individual {
 	return &Individual{
 		genes:   make([]int64, size),
 		fitness: 0,
@@ -76,7 +76,7 @@ func (i *Individual) evaluateFitness() int64 {
 }
 
 func main() {
-	indv := new(Individual).New(10000)
+	indv := New(10000)
 	indv.generateGenes()
 	fmt.Println(indv.evaluateFitness())
 }
