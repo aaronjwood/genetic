@@ -1,4 +1,4 @@
-package main
+package individual
 
 import (
 	"fmt"
@@ -15,8 +15,8 @@ type Individual struct {
 //Create a new Individual
 func New(size int64) *Individual {
 	return &Individual{
-		genes:   make([]int64, size),
-		fitness: 0,
+		genes:     make([]int64, size),
+		fitness:   0,
 		generator: rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 }
@@ -73,10 +73,4 @@ func (i *Individual) evaluateFitness() int64 {
 	}
 
 	return i.fitness
-}
-
-func main() {
-	indv := New(10000)
-	indv.generateGenes()
-	fmt.Println(indv.evaluateFitness())
 }
