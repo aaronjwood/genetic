@@ -17,6 +17,7 @@ func (i *Individual) New(size int64) *Individual {
 	return &Individual{
 		genes:   make([]int64, size),
 		fitness: 0,
+		generator: rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 }
 
@@ -49,9 +50,8 @@ func (i *Individual) setGene(idx, gene int64) *Individual {
 
 //Generates random genes and fills up the gene pool
 func (i *Individual) generateGenes() *Individual {
-	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for c := range i.genes {
-		i.setGene(int64(c), generator.Int63n(2))
+		i.setGene(int64(c), i.generator.Int63n(2))
 	}
 
 	return i
@@ -59,8 +59,7 @@ func (i *Individual) generateGenes() *Individual {
 
 //Mutates a gene by flipping it
 func (i *Individual) mutate() *Individual {
-	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
-	idx := generator.Int63n(int64(len(i.genes)))
+	idx := i.generator.Int63n(int64(len(i.genes)))
 	i.setGene(idx, 1-i.getGene(idx))
 
 	return i
