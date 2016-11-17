@@ -16,9 +16,9 @@ type Individual struct {
 //Create a new Individual
 func (i *Individual) New(size int64) *Individual {
 	return &Individual{
-		Size:      size,
-		genes:     make([]int64, size),
-		fitness:   0,
+		Size:    size,
+		genes:   make([]int64, size),
+		fitness: 0,
 	}
 }
 
@@ -52,8 +52,8 @@ func (i *Individual) setGene(idx, gene int64) *Individual {
 //Generates random genes and fills up the gene pool
 func (i *Individual) generateGenes() *Individual {
 	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
-	for c := int64(0); c < i.Size; c++ {
-		i.setGene(c, generator.Int63n(2))
+	for c := range i.genes {
+		i.setGene(int64(c), generator.Int63n(2))
 	}
 
 	return i
@@ -71,8 +71,8 @@ func (i *Individual) mutate() *Individual {
 //Determines a fitness value based on all genes
 func (i *Individual) evaluateFitness() int64 {
 	i.fitness = 0
-	for c := int64(0); c < i.Size; c++ {
-		i.fitness += i.getGene(c)
+	for c := range i.genes {
+		i.fitness += i.getGene(int64(c))
 	}
 
 	return i.fitness
