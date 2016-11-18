@@ -26,3 +26,13 @@ func New(size int) *Population {
 		append(pop.population, individual.New(1000).GenerateGenes())
 	}
 }
+
+//Determines the fitness level for the entire population
+func (p *Population) evaluate() float64 {
+	p.fitness = 0
+	for _, v := range p.population {
+		p.fitness += v.EvaluateFitness()
+	}
+
+	return p.fitness
+}
