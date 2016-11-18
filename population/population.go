@@ -16,6 +16,7 @@ type Population struct {
 	fitness        float64
 }
 
+//Creates a new population
 func New(size int) *Population {
 	pop := &Population{
 		population: make([]individual.Individual, size),

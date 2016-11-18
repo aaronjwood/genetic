@@ -1,8 +1,8 @@
 package main
 
 import (
-	"geneticalgos/individual"
 	"fmt"
+	"geneticalgos/individual"
 )
 
 func main() {
@@ -10,4 +10,3 @@ func main() {
 	indv.GenerateGenes().EvaluateFitness()
 	fmt.Println(indv.GetFitness())
 }
-
