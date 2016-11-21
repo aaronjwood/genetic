@@ -3,6 +3,7 @@ package population
 import (
 	"geneticalgos/individual"
 	"math/rand"
+	"time"
 )
 
 type Population struct {
@@ -20,6 +21,7 @@ type Population struct {
 func New(size int) *Population {
 	pop := &Population{
 		population: make([]individual.Individual, size),
+		generator:  rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 
 	for i := 0; i < size; i++ {
@@ -39,6 +41,17 @@ func (p *Population) setPopulation(pop []individual.Individual) *Population {
 //Gets the population
 func (p *Population) getPopulation() []individual.Individual {
 	return p.population
+}
+
+//Selects an individual at random
+func (p *Population) rouletteSelection() individual.Individual {
+	selection := p.generator.Int63() * p.fitness
+	var idx int
+	for idx = 0; idx < len(p.population) && selection > 0; idx++ {
+		selection -= p.population[idx].GetFitness()
+	}
+
+	return p.population[idx-1]
 }
 
 //Determines the fitness level for the entire population
