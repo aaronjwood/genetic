@@ -14,18 +14,18 @@ type Population struct {
 	Crossover      float64
 	generator      *rand.Rand
 	population     []individual.Individual
-	fitness        float64
+	fitness        int64
 }
 
 //Creates a new population
-func New(size int) *Population {
+func New(size int64) *Population {
 	pop := &Population{
 		population: make([]individual.Individual, size),
 		generator:  rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 
-	for i := 0; i < size; i++ {
-		pop.population = append(pop.population, individual.New(1000).GenerateGenes())
+	for i := int64(0); i < size; i++ {
+		pop.population = append(pop.population, *individual.New(1000).GenerateGenes())
 	}
 
 	return pop
@@ -55,7 +55,7 @@ func (p *Population) rouletteSelection() individual.Individual {
 }
 
 //Determines the fitness level for the entire population
-func (p *Population) evaluate() float64 {
+func (p *Population) evaluate() int64 {
 	p.fitness = 0
 	for _, v := range p.population {
 		p.fitness += v.EvaluateFitness()
