@@ -27,6 +27,8 @@ func New(size int64) *Population {
 		pop.population = append(pop.population, *individual.New(size).GenerateGenes())
 	}
 
+	pop.evaluate()
+
 	return pop
 }
 
