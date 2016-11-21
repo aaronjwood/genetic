@@ -8,7 +8,6 @@ import (
 
 type Population struct {
 	Elite          int
-	PopulationSize int
 	Rounds         int
 	Mutation       float64
 	Crossover      float64
