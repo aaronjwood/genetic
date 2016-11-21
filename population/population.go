@@ -22,9 +22,11 @@ func New(size int) *Population {
 		population: make([]individual.Individual, size),
 	}
 
-	for i := range pop.population {
-		append(pop.population, individual.New(1000).GenerateGenes())
+	for i := 0; i < size; i++ {
+		pop.population = append(pop.population, individual.New(1000).GenerateGenes())
 	}
+
+	return pop
 }
 
 //Determines the fitness level for the entire population
