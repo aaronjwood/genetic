@@ -36,6 +36,11 @@ func (p *Population) setPopulation(pop []individual.Individual) *Population {
 	return p
 }
 
+//Gets the population
+func (p *Population) getPopulation() []individual.Individual {
+	return p.population
+}
+
 //Determines the fitness level for the entire population
 func (p *Population) evaluate() float64 {
 	p.fitness = 0
