@@ -1,7 +1,7 @@
 package population
 
 import (
-	"geneticalgos/individual"
+	"github.com/aaronjwood/genetic/individual"
 	"math/rand"
 	"time"
 )

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"geneticalgos/individual"
+	"github.com/aaronjwood/genetic/individual"
 )
 
 func main() {
