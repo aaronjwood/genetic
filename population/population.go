@@ -24,7 +24,7 @@ func New(size int64) *Population {
 	}
 
 	for i := int64(0); i < size; i++ {
-		pop.population = append(pop.population, *individual.New(1000).GenerateGenes())
+		pop.population = append(pop.population, *individual.New(size).GenerateGenes())
 	}
 
 	return pop
