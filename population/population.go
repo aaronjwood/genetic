@@ -29,6 +29,13 @@ func New(size int) *Population {
 	return pop
 }
 
+//Specifies the population of individuals to use
+func (p *Population) setPopulation(pop []individual.Individual) *Population {
+	copy(p.population, pop)
+
+	return p
+}
+
 //Determines the fitness level for the entire population
 func (p *Population) evaluate() float64 {
 	p.fitness = 0
