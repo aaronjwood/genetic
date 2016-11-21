@@ -30,6 +30,10 @@ func New(size int64) *Population {
 	return pop
 }
 
+func (p *Population) GetFitness() int64 {
+	return p.fitness
+}
+
 //Specifies the population of individuals to use
 func (p *Population) setPopulation(pop []individual.Individual) *Population {
 	copy(p.population, pop)
